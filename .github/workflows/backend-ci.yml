@@ -44,11 +44,7 @@ jobs:
       working-directory: ./backend/src
 
     - name: Test
-      run: dotnet test SpecterOps.Tests/SpecterOps.Tests.csproj --configuration Release --verbosity normal
+      run: dotnet test SpecterOps.Tests/SpecterOps.Tests.csproj --no-build --configuration Release --verbosity normal
       working-directory: ./backend/src
       env:
-        DATABASE_HOST: localhost
-        DATABASE_PORT: 5432
-        DATABASE_NAME: specter_ops_test
-        DATABASE_USER: postgres
-        DATABASE_PASSWORD: postgres
+        ConnectionStrings__DefaultConnection: "Host=localhost;Database=specter_ops_test;Username=postgres;Password=postgres"
