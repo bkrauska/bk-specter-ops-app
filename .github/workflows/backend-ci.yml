@@ -1,6 +1,3 @@
-### `.github/workflows/backend-ci.yml`
-
-```yaml
 name: Backend CI
 
 on:
