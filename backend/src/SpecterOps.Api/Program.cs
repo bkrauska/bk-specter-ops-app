@@ -1,12 +1,20 @@
+using FastEndpoints;
+using FastEndpoints.Swagger;
 using Microsoft.EntityFrameworkCore;
 using SpecterOps.Api.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+// Add FastEndpoints
+builder.Services.AddFastEndpoints();
+builder.Services.SwaggerDocument(o =>
+{
+    o.DocumentSettings = s =>
+    {
+        s.Title = "Specter Ops API";
+        s.Version = "v1";
+    };
+});
 
 // Database
 builder.Services.AddDbContext<SpecterOpsContext>(options =>
@@ -32,15 +40,14 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerGen();
 }
 
 app.UseCors("AllowFrontend");
 
 app.UseAuthorization();
 
-app.MapControllers();
+app.UseFastEndpoints();
 
 // Health check endpoint
 app.MapGet("/api/health", () => Results.Ok(new { status = "healthy" }));
