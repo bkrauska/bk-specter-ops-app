@@ -2,11 +2,9 @@ name: Backend CI
 
 on:
   push:
-    branches: [ main, develop ]
     paths:
       - 'backend/**'
   pull_request:
-    branches: [ main, develop ]
     paths:
       - 'backend/**'
 
@@ -38,15 +36,15 @@ jobs:
         dotnet-version: '8.0.x'
 
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore SpecterOps.Api/SpecterOps.Api.csproj
       working-directory: ./backend/src
 
     - name: Build
-      run: dotnet build --no-restore --configuration Release
+      run: dotnet build SpecterOps.Api/SpecterOps.Api.csproj --no-restore --configuration Release
       working-directory: ./backend/src
 
     - name: Test
-      run: dotnet test --no-build --configuration Release --verbosity normal
+      run: dotnet test SpecterOps.Tests/SpecterOps.Tests.csproj --configuration Release --verbosity normal
       working-directory: ./backend/src
       env:
         ConnectionStrings__DefaultConnection: "Host=localhost;Database=specterops_test;Username=postgres;Password=postgres"
