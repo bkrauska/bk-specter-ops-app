@@ -44,7 +44,7 @@ jobs:
       working-directory: ./backend/src
 
     - name: Test
-      run: dotnet test SpecterOps.Tests/SpecterOps.Tests.csproj --no-build --configuration Release --verbosity normal
+      run: dotnet test SpecterOps.Tests/SpecterOps.Tests.csproj --configuration Release --verbosity normal
       working-directory: ./backend/src
       env:
         ConnectionStrings__DefaultConnection: "Host=localhost;Database=specter_ops_test;Username=postgres;Password=postgres"
