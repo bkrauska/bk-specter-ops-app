@@ -2,11 +2,9 @@ name: Backend CI
 
 on:
   push:
-    branches: [ main, develop ]
     paths:
       - 'backend/**'
   pull_request:
-    branches: [ main, develop ]
     paths:
       - 'backend/**'
 
@@ -38,16 +36,16 @@ jobs:
         dotnet-version: 8.0.x
         
     - name: Restore dependencies
-      run: dotnet restore
-      working-directory: ./backend/src/SpecterOps.Api
-      
+      run: dotnet restore SpecterOps.Api/SpecterOps.Api.csproj
+      working-directory: ./backend/src
+
     - name: Build
-      run: dotnet build --no-restore
-      working-directory: ./backend/src/SpecterOps.Api
-      
+      run: dotnet build SpecterOps.Api/SpecterOps.Api.csproj --no-restore --configuration Release
+      working-directory: ./backend/src
+
     - name: Test
-      run: dotnet test --no-build --verbosity normal
-      working-directory: ./backend/src/SpecterOps.Tests
+      run: dotnet test SpecterOps.Tests/SpecterOps.Tests.csproj --configuration Release --verbosity normal
+      working-directory: ./backend/src
       env:
         DATABASE_HOST: localhost
         DATABASE_PORT: 5432

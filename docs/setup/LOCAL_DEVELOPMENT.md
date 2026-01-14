@@ -4,6 +4,7 @@
 
 ### Required Software
 - **Node.js**: v20 or later
+- **pnpm**: 8.0 or later (install with `npm install -g pnpm`)
 - **.NET SDK**: 8.0 or later
 - **PostgreSQL**: 15 or later
 - **Git**: Latest version
@@ -84,7 +85,7 @@ curl http://localhost:5000/api/health
 ### 1. Install Dependencies
 ```bash
 cd frontend
-npm install
+pnpm install
 ```
 
 ### 2. Configure Frontend
@@ -98,7 +99,7 @@ cp .env.example .env
 
 ### 3. Start Development Server
 ```bash
-npm run dev
+pnpm dev
 # Server runs at http://localhost:5173
 ```
 
@@ -118,7 +119,7 @@ dotnet test
 ### Frontend Tests
 ```bash
 cd frontend
-npm test
+pnpm test
 ```
 
 ---
@@ -157,7 +158,7 @@ cd backend/docker && docker-compose up
 cd backend/src/SpecterOps.Api && dotnet run
 
 # Terminal 3: Frontend
-cd frontend && npm run dev
+cd frontend && pnpm dev
 ```
 
 ### 2. Making Changes
@@ -170,8 +171,8 @@ cd frontend && npm run dev
 #### Frontend Changes
 - Edit files in `frontend/src/`
 - Hot reload enabled (Vite HMR)
-- Type check: `npm run check`
-- Lint: `npm run lint`
+- Type check: `pnpm check`
+- Lint: `pnpm lint`
 
 ### 3. Database Changes
 ```bash
@@ -201,12 +202,12 @@ lsof -ti:5173 | xargs kill
 - Verify connection string in .env
 - Check firewall settings
 
-### npm install fails
+### pnpm install fails
 ```bash
-# Clear cache
-npm cache clean --force
-rm -rf node_modules package-lock.json
-npm install
+# Clear cache and store
+pnpm store prune
+rm -rf node_modules pnpm-lock.yaml
+pnpm install
 ```
 
 ### .NET restore fails

@@ -49,7 +49,8 @@ docker build -t specterops-api:latest .
 
 # Frontend (build static files)
 cd frontend
-npm run build
+pnpm install
+pnpm build
 ```
 
 2. **Configure docker-compose.yml**
@@ -149,7 +150,7 @@ az webapp config appsettings set \
 #### Vercel
 ```bash
 # Install Vercel CLI
-npm i -g vercel
+pnpm add -g vercel
 
 # Deploy
 cd frontend
