@@ -1,0 +1,79 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Source code
+*.cs     text diff=csharp
+*.cshtml text diff=html
+*.csx    text diff=csharp
+*.js     text
+*.ts     text
+*.svelte text
+*.json   text
+*.md     text
+
+# Documentation
+*.markdown   text
+*.mdx        text
+*.txt        text
+AUTHORS      text
+CHANGELOG    text
+CHANGES      text
+CONTRIBUTING text
+COPYING      text
+copyright    text
+*COPYRIGHT*  text
+INSTALL      text
+license      text
+LICENSE      text
+NEWS         text
+readme       text
+*README*     text
+TODO         text
+
+# Configuration
+*.cnf        text
+*.conf       text
+*.config     text
+.editorconfig text
+.env         text
+.gitattributes text
+.gitconfig   text
+.htaccess    text
+*.lock       text
+*.npmignore  text
+*.yaml       text
+*.yml        text
+browserslist text
+Makefile     text
+makefile     text
+
+# Graphics
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.svg  text
+
+# Archives
+*.7z  binary
+*.gz  binary
+*.tar binary
+*.zip binary
+
+# Fonts
+*.ttf   binary
+*.eot   binary
+*.otf   binary
+*.woff  binary
+*.woff2 binary
+
+# Executables
+*.exe binary
+*.pyc binary
+
+# RC files (like .babelrc or .eslintrc)
+*.*rc text
+
+# Ignore files (like .npmignore or .gitignore)
+*.*ignore text
