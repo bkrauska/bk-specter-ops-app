@@ -96,7 +96,7 @@ dotnet test
 
 # Frontend
 cd frontend
-npm test
+pnpm test
 ```
 
 ### 5. Commit Changes
