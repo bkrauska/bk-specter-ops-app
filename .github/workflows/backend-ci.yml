@@ -9,32 +9,32 @@ on:
       - 'backend/**'
 
 jobs:
-  build-and-test:
+  build:
     runs-on: ubuntu-latest
-
+    
     services:
       postgres:
-        image: postgres:15
+        image: postgres:16-alpine
         env:
+          POSTGRES_DB: specter_ops_test
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: specterops_test
+        ports:
+          - 5432:5432
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-        ports:
-          - 5432:5432
 
     steps:
-    - uses: actions/checkout@v3
-
+    - uses: actions/checkout@v4
+    
     - name: Setup .NET
-      uses: actions/setup-dotnet@v3
+      uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: '8.0.x'
-
+        dotnet-version: 8.0.x
+        
     - name: Restore dependencies
       run: dotnet restore SpecterOps.Api/SpecterOps.Api.csproj
       working-directory: ./backend/src
@@ -47,4 +47,8 @@ jobs:
       run: dotnet test SpecterOps.Tests/SpecterOps.Tests.csproj --configuration Release --verbosity normal
       working-directory: ./backend/src
       env:
-        ConnectionStrings__DefaultConnection: "Host=localhost;Database=specterops_test;Username=postgres;Password=postgres"
+        DATABASE_HOST: localhost
+        DATABASE_PORT: 5432
+        DATABASE_NAME: specter_ops_test
+        DATABASE_USER: postgres
+        DATABASE_PASSWORD: postgres
